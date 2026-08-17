@@ -24,11 +24,12 @@ const modalVariants = cva(
       variant: "light",
       size: "md",
     },
-  }
+  },
 );
 
 interface ModalProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof modalVariants> {
   asChild?: boolean;
   isOpen?: boolean;
@@ -58,7 +59,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       size,
       ...props
     },
-    ref
+    ref,
   ) => {
     if (!isOpen) return null;
     const Comp = asChild ? Slot : "div";
@@ -75,19 +76,19 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           className={cn(
             modalVariants({ variant, size }),
             "relative rounded-xl transform scale-100 transition-all duration-300 animate-fadeIn",
-            className
+            className,
           )}
           {...props}
         >
           <div>
             {title && (
-              <h3 className="text-xl font-semibold mb-2 text-[inherit]">
+              <h3 className="text-xl font-semibold mb-2 text-inherit">
                 {title}
               </h3>
             )}
 
             {description && (
-              <p className="text-gray-600 dark:text-gray-300 mb-4 text-[inherit]">
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
                 {description}
               </p>
             )}
@@ -101,7 +102,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                   "px-4 py-2 rounded-md font-medium transition",
                   variant === "dark"
                     ? "border border-slate-600 hover:bg-slate-700"
-                    : "border border-gray-300 hover:bg-gray-100"
+                    : "border border-gray-300 hover:bg-gray-100",
                 )}
               >
                 {closeText}
@@ -113,7 +114,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                   "px-4 py-2 rounded-md text-white font-medium transition",
                   variant === "dark"
                     ? "bg-indigo-500 hover:bg-indigo-600"
-                    : "bg-indigo-600 hover:bg-indigo-700"
+                    : "bg-indigo-600 hover:bg-indigo-700",
                 )}
               >
                 {doneText}
@@ -123,7 +124,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         </Comp>
       </div>
     );
-  }
+  },
 );
 
 Modal.displayName = "Modal";
